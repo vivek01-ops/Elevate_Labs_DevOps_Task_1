@@ -1,16 +1,18 @@
-# Use Node.js official image
-FROM node:18
+# Use official Node.js image
+FROM node:22
 
-# Set working directory
+# Create app directory
 WORKDIR /app
 
-# Copy package files and install dependencies
+# Install app dependencies
 COPY package*.json ./
 RUN npm install
 
-# Copy rest of the app
+# Bundle app source
 COPY . .
 
-# Expose the port and run the app
+# Bind to port 3000
 EXPOSE 3000
+
+# Run the app
 CMD ["node", "index.js"]
